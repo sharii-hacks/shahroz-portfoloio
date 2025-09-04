@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhammad Shahroz – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1226;
+      --card:#15193a;
+      --muted:#98a2b3;
+      --text:#f8fafc;
+      --primary:#6d5dfc;
+      --accent:#22d3ee;
+      --ring: 0 0 0 3px rgba(109,93,252,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text); background:radial-gradient(1200px 600px at 80% -20%, rgba(109,93,252,.15), transparent),
+                         radial-gradient(800px 400px at -10% 20%, rgba(34,211,238,.12), transparent),
+                         var(--bg);
+    }
+
+    /* Layout */
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    section{padding:80px 0}
+
+    /* Navbar */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(8px);
+      background:linear-gradient(to bottom, rgba(15,18,38,.85), rgba(15,18,38,.55)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .brand .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(45deg, var(--accent), var(--primary)); box-shadow:0 0 24px var(--accent)}
+    .nav a{color:var(--text); text-decoration:none; font-weight:500; opacity:.85}
+    .links{display:flex; gap:16px}
+    .links a{padding:8px 10px; border-radius:12px}
+    .links a:hover{background:rgba(255,255,255,.05)}
+    .hire-btn{background:linear-gradient(45deg, var(--primary), var(--accent)); color:#0b1028; padding:8px 14px; border-radius:14px; font-weight:700}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:28px; padding-top:40px}
+    .chip{display:inline-flex; align-items:center; gap:8px; background:rgba(109,93,252,.15); color:#cfd8ff; padding:6px 10px; border:1px solid rgba(109,93,252,.35); border-radius:999px;
+      box-shadow:var(--ring)}
+    .title{font-size:46px; line-height:1.1; margin:14px 0}
+    .subtitle{color:var(--muted); max-width:48ch}
+    .cta{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:#ffffff10; color:var(--text); text-decoration:none; font-weight:600}
+    .btn.primary{background:linear-gradient(45deg, var(--primary), var(--accent)); color:#0b1028; border:none}
+    .socials{display:flex; gap:10px; margin-top:18px}
+    .socials a{display:inline-flex; width:38px; height:38px; align-items:center; justify-content:center; border-radius:10px; background:#ffffff10; border:1px solid rgba(255,255,255,.08)}
+
+    .avatar-wrap{display:grid; place-items:center}
+    .avatar{width:220px; height:220px; border-radius:28px; border:1px solid rgba(255,255,255,.1); overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .avatar img{width:100%; height:100%; object-fit:cover}
+
+    /* Section headers */
+    .section-head{display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:24px}
+    .section-head h2{margin:0; font-size:28px}
+    .muted{color:var(--muted)}
+
+    /* About */
+    .about{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:20px; box-shadow:0 12px 30px rgba(0,0,0,.25)}
+
+    /* Skills */
+    .skills{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .skill{background:#0f1331; border:1px solid rgba(255,255,255,.06); padding:14px; border-radius:14px}
+    .skill-header{display:flex; justify-content:space-between; font-weight:600}
+    .bar{height:10px; background:#1a204a; border-radius:999px; overflow:hidden; margin-top:10px}
+    .bar > span{display:block; height:100%; width:0; background:linear-gradient(90deg, var(--accent), var(--primary)); border-radius:999px; box-shadow:0 0 20px rgba(109,93,252,.45)}
+
+    /* Stats */
+    .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .stat{background:#0f1331; border:1px solid rgba(255,255,255,.06); padding:20px; border-radius:16px; text-align:center}
+    .stat .num{font-size:34px; font-weight:800}
+    .stat .label{color:var(--muted)}
+
+    /* Projects */
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .project{position:relative; overflow:hidden}
+    .project .thumb{height:160px; border-radius:14px; background:linear-gradient(120deg, rgba(109,93,252,.25), rgba(34,211,238,.25)); border:1px solid rgba(255,255,255,.06); display:grid; place-items:center}
+    .project h3{margin:10px 0 4px}
+    .project p{margin:0; color:var(--muted)}
+    .project .thumb:hover{transform:translateY(-2px); box-shadow:0 18px 40px rgba(0,0,0,.35)}
+    .tag{display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#ffffff10; border:1px solid rgba(255,255,255,.08); margin-right:6px}
+
+    /* Contact */
+    form{display:grid; gap:12px; max-width:680px}
+    input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0b1028; color:var(--text)}
+    textarea{min-height:120px; resize:vertical}
+    input:focus, textarea:focus{outline:none; box-shadow:var(--ring); border-color:transparent}
+
+    /* Footer */
+    footer{padding:26px 0 40px; color:var(--muted); border-top:1px solid rgba(255,255,255,.06)}
+
+    /* Animations */
+    .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr; text-align:center}
+      .avatar-wrap{order:-1}
+      .about{grid-template-columns:1fr}
+      .skills{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .title{font-size:36px}
+      .grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .links{display:none}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="dot"></span> Shahroz<span class="muted">• Portfolio</span></div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a class="hire-btn" href="#contact">Hire Me</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container hero">
+    <div>
+      <span class="chip">🎓 BS Computer Science • Front‑End Developer</span>
+      <h1 class="title">Hi, I'm <span style="background:linear-gradient(45deg,var(--accent),var(--primary)); -webkit-background-clip:text; background-clip:text; color:transparent">Muhammad Shahroz</span> — SEO & Web Developer</h1>
+      <p class="subtitle">I build clean, fast, and accessible web apps with modern JavaScript.
+        Passionate about delightful UI, subtle animations, and performance.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn" href="#contact">Contact Me</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/sharii-hacks" aria-label="GitHub" title="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A12 12 0 0 0 0 12.67c0 5.36 3.44 9.9 8.2 11.5.6.12.82-.27.82-.6v-2.1c-3.34.75-4.04-1.63-4.04-1.63-.55-1.45-1.34-1.83-1.34-1.83-1.08-.77.08-.76.08-.76 1.2.09 1.83 1.27 1.83 1.27 1.07 1.87 2.8 1.33 3.48 1.02.11-.8.42-1.33.76-1.64-2.66-.3-5.47-1.37-5.47-6.12 0-1.35.46-2.44 1.22-3.3-.12-.3-.53-1.52.12-3.18 0 0 1-.33 3.3 1.25a11.1 11.1 0 0 1 6 0c2.3-1.58 3.3-1.25 3.3-1.25.65 1.66.24 2.88.12 3.18.76.86 1.22 1.95 1.22 3.3 0 4.77-2.81 5.82-5.49 6.12.43.38.81 1.12.81 2.26v3.35c0 .34.22.73.83.6 4.75-1.6 8.19-6.14 8.19-11.5A12 12 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammad-shahroz-bin-shahzad-17356b262?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="LinkedIn" title="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 5 2.12 5 3.5ZM.5 8h4V23h-4V8Zm7 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C19.4 8 22 10.1 22 14.2V23h-4v-7.5c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.9 2-2.9 4V23h-4V8Z"/></svg>
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=shahroz121781@gmail.com&su=Hiring Inquiry&body=Hello Shahroz," 
+   target="_blank">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/>
+  </svg>
+</a>
+      </div>
+    </div>
+    <div class="avatar-wrap">
+      <div class="avatar reveal">
+        <img src="pfpics.jpg" alt="Shahroz profile">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="container">
+      <div class="section-head">
+        <h2>About</h2>
+        <p class="muted">I am Shahroz, an SEO and Web Developer.</p>
+      </div>
+      <div class="about">
+        <div class="card reveal">
+          <h3>Who I Am</h3>
+          <p>
+            BSCS graduate with a passion for crafting responsive, accessible, and animated user interfaces. I love turning ideas into delightful digital experiences and write clean, maintainable code.
+          </p>
+          <ul>
+            <li>Front‑end: HTML, CSS, JavaScript, React</li>
+            <li>Back‑end: Node.js, Express.js</li>
+            <li>DB: MongoDB, MySQL</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>What I Do</h3>
+          <p>
+            I build full‑stack projects, optimize SEO, and collaborate with teams to ship features. Below are a few highlighted projects.
+          </p>
+          <div class="muted">Open to internships & junior roles.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="container">
+      <div class="section-head">
+        <h2>Skills & Stats</h2>
+        <p class="muted">Progress bars & animated counters.</p>
+      </div>
+      <div class="skills">
+        <div class="skill reveal">
+          <div class="skill-header"><span>HTML</span><span>90%</span></div>
+          <div class="bar"><span style="--to:90%"></span></div>
+        </div>
+        <div class="skill reveal">
+          <div class="skill-header"><span>JavaScript</span><span>60%</span></div>
+          <div class="bar"><span style="--to:60%"></span></div>
+        </div>
+        <div class="skill reveal">
+          <div class="skill-header"><span>CSS</span><span>80%</span></div>
+          <div class="bar"><span style="--to:80%"></span></div>
+        </div>
+        <div class="skill reveal">
+          <div class="skill-header"><span>SEO</span><span>40%</span></div>
+          <div class="bar"><span style="--to:40%"></span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="container">
+      <div class="section-head">
+        <h2>Featured Projects</h2>
+        <p class="muted">Real work with clean UI and animations.</p>
+      </div>
+      <div class="grid">
+        <article class="project reveal">
+          <div class="thumb"><span class="tag">React</span><span class="tag">AJAX</span></div>
+          <h3>Library Management System</h3>
+          <p>Animated dashboard with full CRUD, React front‑end over Node API.</p>
+        </article>
+        <article class="project reveal">
+          <div class="thumb"><span class="tag">Node</span><span class="tag">EJS</span></div>
+          <h3>Hotel Room Management</h3>
+          <p>Rooms, guests, staff & bookings with interactive UI transitions.</p>
+        </article>
+        <article class="project reveal">
+          <div class="thumb"><span class="tag">PHP</span><span class="tag">MySQL</span></div>
+          <h3>CMS – WebEase</h3>
+          <p>Custom content management system built as a final year project.</p>
+        </article>
+      </div>
+    </section>
+
+    
+      <!-- 👇 Contact Section -->
+<section id="contact" class="container">
+  <div class="section-head">
+    <h2>Contact</h2>
+    <p class="muted">Let’s build something great together.</p>
+  </div>
+
+  <form id="contactForm" class="reveal" 
+        action="https://formspree.io/f/mzzakeyv" method="POST">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+      <input name="name" required placeholder="Your Name" aria-label="Your Name" />
+      <input name="email" type="email" required placeholder="Email" aria-label="Email" />
+    </div>
+    <input name="subject" placeholder="Subject" aria-label="Subject" />
+    <textarea name="message" required placeholder="Your message" aria-label="Message"></textarea>
+    <button class="btn primary" type="submit">Send Message</button>
+  </form>
+
+  <!-- Success/Error Messages -->
+  <p id="formStatus" style="margin-top:10px; font-weight:bold;"></p>
+</section>
+
+<script>
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault(); // Stop page reload
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (response.ok) {
+        status.innerText = "✅ Message sent successfully!";
+        status.style.color = "lightgreen";
+        form.reset(); // Clear form
+      } else {
+        status.innerText = "❌ Something went wrong, please try again.";
+        status.style.color = "red";
+      }
+    } catch (error) {
+      status.innerText = "❌ Network error. Please try again later.";
+      status.style.color = "red";
+    }
+  });
+</script>
+
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Muhammad Shahroz</div>
+      <div class="muted">Rawalpindi, Pakistan</div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      })
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Animated progress bars
+    function animateBars(){
+      document.querySelectorAll('.bar > span').forEach(span=>{
+        const to = span.style.getPropertyValue('--to') || '0%';
+        span.animate([{width:'0%'},{width:to}], {duration:900, fill:'forwards', easing:'ease-out'});
+      })
+    }
+    // Count up stats
+    function countUp(){
+      document.querySelectorAll('.num').forEach(el=>{
+        const target = +el.dataset.count;
+        const dur = 1200; const start = performance.now();
+        function step(now){
+          const p = Math.min(1, (now - start)/dur);
+          el.textContent = Math.floor(p*target);
+          if(p < 1) requestAnimationFrame(step); else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      })
+    }
+
+    // Trigger animations when skills section enters view
+    const skillsSec = document.getElementById('skills');
+    const once = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ animateBars(); countUp(); once.disconnect(); }
+      })
+    }, {threshold:.3});
+    once.observe(skillsSec);
+  </script>
+</body>
+</html>
